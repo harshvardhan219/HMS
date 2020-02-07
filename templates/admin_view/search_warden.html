@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Admin | Search {%endblock%}
+{% block heading %} Search   {% endblock %}
+
+{% block style %}
+ion-icon {
+    color:#fd9426;
+    font-size:30px;
+    float:right;
+    margin:0 3px;
+    padding:3px;
+    line-height:20px;
+    display:block;
+    border: 1px solid #fd9426;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.1s;
+  }
+  ion-icon:hover{
+    transition:0.1s;
+    background:#fd9426;
+    color:#FFF;
+    border: 1px solid #fd9426;
+  }
+  .menu {
+    top: -71px;
+    position: relative;
+  }
+  .box
+  {
+    margin-bottom:20px ;
+    border-radius:10px ;
+    box-shadow:0 0 0 0.4;
+    opacity:0.8;
+    width: 100%;
+    height: 330px;
+    border: 2px solid #ced4da;
+  }
+  .box:hover{
+
+    border: 1px solid rgb(255,128,33);
+    background:.rgb(255,128,33);
+
+  }
+
+
+
+  .span2
+  {
+    font-size: 16px;
+    color: #999999;
+    font-weight:bolder;
+    text-align: center;
+    margin-bottom:0px;
+
+  }
+  #span3{
+    color:black;
+  }
+  
+  h4 {
+    color:#000;
+    background: #ced4da;
+    border-radius:10px;
+    padding:0px 10px;
+    width:100%;
+  }
+  .box img {
+    width:100%;
+    height:220px;
+    padding:10px;
+    border-radius:50%;
+
+  }
+  .box .a1 ion-icon {
+    color:#fc3d39
+
+  }
+  .box .a1 ion-icon:hover {
+    background:#fc3d39;
+    color:#fff;
+    border:1px solid #fc3d39;
+  }
+  .box .a3 ion-icon {
+    color:#53d769;
+  }
+  .box .a3 ion-icon:hover {
+    background:#53d769;
+    color:#fff;
+    border:1px solid #53d769;
+  }
+        input,select, optgroup, textarea {
+          margin: 10px;
+          width: 100%;
+          font-family: inherit;
+          font-size: inherit;
+          line-height: inherit;
+          outline: none;
+          border: 2px solid #ced4da;
+          color:rgb(255,128,33);
+          border-radius: 10px;
+          height: 52px !important;
+          font-size: 18px;
+          background: #fff !important;
+          color: #000000 !important;
+          -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+        }
+        input:hover,select:hover, optgroup:hover
+        , textarea:hover {
+          border: 1px solid rgb(255,128,33);
+        }
+
+{% endblock %}
+      {% block nav-link %}
+          <li ><a style="font-size:18px;" href="/admin-home"> Home</a></li>
+          <li ><a style="font-size:18px;" href="/signupWarden">Create Warden</a><li>
+          <li ><a style="font-size:18px;" href="/Notice-admin"> Create Notice</a></li>
+          <li  class="colorlib-active"><a style="font-size:18px;" href="/search-warden"> Search Warden</a></li>
+            <br>
+            <hr>
+          <li ><a style="color:#fd9426;" id='logout' href="warden/warden-login.html"><i  class="fa fa-sign-out"></i> logout</a></li>
+      {% endblock %}
+
+{% block body %}
+  <div class="col-md-12">
+      <form  method="post">
+         <div  class="form-row">
+           <div class="form-group col-md-12 mb-0">
+                      {%csrf_token%}
+                    {{ form |crispy}}
+           </div>
+         </div>
+        <button type="submit" style="border-radius:10px" class="btn btn-primary">
+             Search
+       </button>
+     </form>
+  <div class="main">
+    <br>
+    <div class="container">
+      <div class="row">
+        {% if data %}
+                 <h4>Search Result</h4>
+                  <br>
+       {% for field in data %}
+          {% if data %}
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3 ">
+              <div class="box">
+                <img src="{% static 'images/logo-2.png' %}" alt="img" class="">
+
+                     <p class="span2">{{field.firstName}} {{field.lastName}}</p>
+
+                        <p class="span2">{{field.hostel_name}}</p>
+
+
+                <a class="a1"><ion-icon     stylew="color:#fc3d39;"  name="trash"> </a>
+                <a class="a2"><ion-icon  stylew="color:#fd9426;" name="create"></a>
+                <a class="a3"><ion-icon  stylew="color:#53d769;" name="eye"> </a>
+            </div>
+          </div>
+        {% else %}
+                {{msg}}
+        {% endif %}
+     {% endfor %}
+   {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

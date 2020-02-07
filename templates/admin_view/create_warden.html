@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+ {% block title %} Create Warden {%endblock%}
+{% block style %}
+  ion-icon {
+      color:#fd9426;
+      font-size:30px;
+      float:right;
+      margin:0 3px;
+      padding:3px;
+      line-height:20px;
+      display:block;
+      border: 1px solid #fd9426;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    ion-icon:hover{
+      background:#fd9426;
+      color:#FFF;
+      border: 1px solid #fd9426;
+    }
+  .menu {
+      top: -71px;
+      position: relative;
+   }
+  .main {
+    background:;
+    border:1px solid #fff;
+    padding:10px;
+    border-radius:20px;
+  }
+  .h2 {
+    line-height: 1.8;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 400;
+    margin-left: 10px;
+    font-family: "Poppins", Arial, sans-serif;
+  }
+
+  input,select, optgroup, textarea {
+      margin: 10px;
+      width: 100%;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      outline: none;
+      border: 2px solid #ced4da;
+      color:rgb(255,128,33);
+      border-radius: 10px;
+      height: 52px !important;
+      font-size: 18px;
+      background: #fff !important;
+      color: #000000 !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+      transition:0.4s;
+  }
+  input:hover,select:hover, optgroup:hover
+  , textarea:hover {
+       transition:0.4s;
+       border: 1px solid rgb(255,128,33);
+  }
+  label {
+     display: inline-block;
+    /* margin-bottom: 00; */
+  }
+{% endblock%}
+
+ {% block heading %} add Warden {% endblock %}
+ {% block nav-link %}
+    <li><a style="font-size:18px;" href="/admin-home"> Home</a></li>
+    <li  class="colorlib-active"  ><a style="font-size:18px;" href="/signupWarden">Create Warden</a><li>
+    <li ><a style="font-size:18px;" href="/Notice-admin"> Create Notice</a></li>
+    <li><a style="font-size:18px;" href="/search-warden"> Search Warden</a></li>
+        <br>
+        <hr>
+    <li ><a style="color:#fd9426;" id='logout' href="warden/warden-login.html"><i class="fa fa-sign-out"></i> logout</a></li>
+ {% endblock %}
+
+ {% block body%}
+ <form  method="post">
+      {% csrf_token %}
+    <div  class="form-row">
+      <div class="form-group col-md-4 mb-0">
+                 {{ main_form.username|as_crispy_field }}
+      </div>
+    </div>
+    <div  class="form-row">
+      <div class="form-group col-md-6 mb-0">
+                 {{ secondary_form.firstName|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+                  {{ secondary_form.lastName|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+                  {{ secondary_form.hostel_name|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+                  {{ secondary_form.email|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-2 mb-0">
+                  {{ secondary_form.phone_number|as_crispy_field }}
+      </div>
+    </div>
+    <div  class="form-row">
+     <div class="form-group col-md-6 mb-0">
+                  {{ main_form.password1|as_crispy_field }}
+     </div>
+     <div class="form-group col-md-6 mb-0">
+                  {{ main_form.password2|as_crispy_field }}
+     </div>
+  </div>
+    <button type="submit" style="border-radius:10px" class="btn btn-primary">
+      create
+    </button>
+</form>
+  {% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Warden | Pay {%endblock%}
+{% block heading %} fee / payment  {% endblock %}
+
+{% block style %}
+ion-icon {
+    color:#fd9426;
+    font-size:30px;
+    float:right;
+    margin:0 3px;
+    padding:3px;
+    line-height:20px;
+    display:block;
+    border: 1px solid #fd9426;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.1s;
+  }
+  ion-icon:hover{
+    transition:0.1s;
+    background:#fd9426;
+    color:#FFF;
+    border: 1px solid #fd9426;
+  }
+ .menu {
+  top: -71px;
+  position: relative;
+ }
+ .box{
+   margin-bottom:20px ;
+   margin-left: ;
+   border-radius:10px ;
+   box-shadow:0 0 0 0.4;
+   opacity:0.8;
+   width: 100%;
+   cursor:pointer;
+   height: 310px;
+   border: 1px solid #ced4da;
+ }
+ .box:hover{
+   border: 1px solid rgb(255,128,33);
+   background:.rgb(255,128,33);
+   transition:0.4s;
+  }
+  .span2 {
+    font-size: 16px;
+    color: #999999;
+    font-weight:bolder;
+    text-align: center;
+    padding-left: 15px;
+  }
+  .main h4 {
+   color:#000;
+   background: #ced4da;
+   border-radius:10px;
+   padding:0px 10px;
+ }
+ .box img {
+  width:200px;
+  height:200px;
+  padding:10px;
+  border-radius:50%;
+ }
+ .box a {
+   background:rgb(255,128,33);
+   color:#ffffff;
+   font-size:20px;
+   padding:5px 20px;
+   border-radius:20px;
+   margin-left:20px;
+   letter-spacing:1px;
+ }
+ .form-control {
+    height: 150px !important;
+    background: #fff !important;
+    color: #000000 !important;
+    font-size: 18px;
+    border-radius: 10px;
+    -webkit-box-shadow: none !important;
+    box-shadow:none;
+  }
+{% endblock %}
+{% block nav-link %}
+     <li><a style="font-size:18px;" href="/warden-home"> Home</a></li>
+     <li><a style="font-size:18px;" href="/signupStaff">Create Staff</a><li>
+     <li><a style="font-size:18px;" href="/notice-warden"> Create Notice</a></li>
+     <li><a style="font-size:18px;" href="/search-staff"> Search Staff</a></li>
+     <li class="colorlib-active"><a style="font-size:18px;" href="/warden-payment"> fee / payment </a></li>
+       <br>
+       <hr>
+    <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
+{% endblock %}
+    {% block body %}
+      <form  method="post">
+            {% csrf_token %}
+              <div  class="form-row">
+                  <div class="form-group col-md-12 mb-0">
+
+                  </div>
+              </div>
+           <h2 style="text-align:center;">Work in progress</h2>
+     </form>
+
+{% endblock %}

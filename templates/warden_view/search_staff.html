@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Staff | Search {%endblock%}
+{% block heading %} Search   {% endblock %}
+
+{% block style %}
+      ion-icon {
+          color:#fd9426;
+          font-size:30px;
+          float:right;
+          margin:0 3px;
+          padding:3px;
+          line-height:20px;
+          display:block;
+          border: 1px solid #fd9426;
+          border-radius:10px;
+          cursor:pointer;
+          transition:0.1s;
+        }
+        ion-icon:hover{
+          transition:0.1s;
+          background:#fd9426;
+          color:#FFF;
+          border: 1px solid #fd9426;
+        }
+        .menu {
+          top: -71px;
+          position: relative;
+        }
+        .box {
+          margin-bottom:20px;
+          margin-left: ;
+          border-radius:10px ;
+          opacity:0.8;
+          width: 100%;
+          height: 310px;
+          border: 2px solid #ced4da;
+        }
+        .box:hover{
+          border: 1px solid rgb(255,128,33);
+          background:.rgb(255,128,33);
+        }
+        .span2n {
+          font-size: 16px;
+          color: #999999;
+          font-weight:bolder;
+          text-align: center;
+          padding-left: 15px;
+
+        }
+        .main h4 {
+          color:#000;
+          background: #ced4da;
+          border-radius:10px;
+          padding:0px 10px;
+        }
+        .box img {
+          width:100%;
+          height:200px;
+          padding:10px;
+          border-radius:50%;
+
+        }
+        .box a {
+          background:rgb(255,128,33);
+          color:#ffffff;
+          font-size:20px;
+          padding:5px 20px;
+          border-radius:20px;
+          margin-left:20px;
+          letter-spacing:1px;
+        }
+        h4 {
+          color:#000;
+          background: #ced4da;
+          border-radius:10px;
+          padding:0px 10px;
+          width:100%;
+        }
+        input,select, optgroup, textarea {
+          margin: 10px;
+          width: 100%;
+          font-family: inherit;
+          font-size: inherit;
+          line-height: inherit;
+          outline: none;
+          border: 2px solid #ced4da;
+          color:rgb(255,128,33);
+          border-radius: 10px;
+          height: 52px !important;
+          font-size: 18px;
+          background: #fff !important;
+          color: #000000 !important;
+          -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+        }
+        input:hover,select:hover, optgroup:hover
+        , textarea:hover {
+          border: 1px solid rgb(255,128,33);
+        }
+
+{% endblock %}
+{% block nav-link %}
+     <li><a style="font-size:18px;" href="/warden-home"> Home</a></li>
+     <li><a style="font-size:18px;" href="/signupStaff">Create Staff</a><li>
+     <li><a style="font-size:18px;" href="/notice-warden"> Create notice</a></li>
+     <li class="colorlib-active"><a style="font-size:18px;" href="/search-staff"> Search Staff</a></li>
+     <li><a style="font-size:18px;" href="/warden-payment"> fee / payment </a></li>
+       <br>
+       <hr>
+    <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
+
+{% endblock %}
+
+{% block body %}
+  <div class="col-md-12">
+      <form  method="post">
+         <div  class="form-row">
+           <div class="form-group col-md-12 mb-0">
+                      {%csrf_token%}
+                    {{ form |crispy}}
+           </div>
+         </div>
+        <button type="submit" style="border-radius:10px" class="btn btn-primary">
+             Search
+       </button>
+     </form>
+  <div class="main">
+    <br>
+    <div class="row">
+               {% if data %}
+          <h4>Search Result</h4> <br>
+            {% for field in data %}
+               {% if data %}
+                  <div class="col-md-3 ">
+                        <div class="box">
+                          <img src="{% static 'images/person_3.jpg' %}" alt="img" class="">
+                           <br>
+                          <span style="padding-right:20px;" class="span2" draggable="true">
+                            {{field.firstName}} {{field.lastName}}
+                          </span>
+                            <br>
+                           <span class="span2" draggable="true">
+                              {{field.hostel_name}}
+                           </span>
+                             <br>
+                           <span class="span2">
+                             <ion-icon style="color:#fc3d39;"  name="trash">
+                           </span>
+                           <span class="span2">
+                             <ion-icon  style="color:#fd9426;" name="create">
+                           </span>
+                          <span class="span2")>
+                            <ion-icon  style="color:#53d769 ;" name="eye">
+                          </span>
+                      </div>
+                  </div>
+                  {% else %}
+                              <h4>No Result found </h4>
+               {% endif %}
+           {% endfor %}
+        {% endif %}
+    </div>
+  </div>
+{% endblock %}
