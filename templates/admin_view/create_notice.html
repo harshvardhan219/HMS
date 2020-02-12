@@ -84,22 +84,13 @@ ion-icon {
 {% endblock %}
  {% block nav-link %}
           <li ><a style="font-size:18px;" href="/admin-home"> Home</a></li>
-          <li ><a style="font-size:18px;" href="/signupWarden">Create Warden</a><li>
-          <li class="colorlib-active" ><a style="font-size:18px;" href="/Notice-admin"> Create Notice</a></li>
+          <li ><a style="font-size:18px;" href="/signupWarden">Add Warden</a><li>
+          <li class="colorlib-active" ><a style="font-size:18px;" href="/Notice-admin"> Send Notice</a></li>
           <li><a style="font-size:18px;" href="/search-warden"> Search Warden</a></li>
           <br>
           <hr>
           <li ><a style="color:#fd9426;" id='logout' href="warden/warden-login.html"><i class="fa fa-sign-out"></i> logout</a></li>
  {% endblock %}
     {% block body %}
-      <form  method="post">
-            {% csrf_token %}
-              <div  class="form-row">
-                  <div class="form-group col-md-12 mb-0">
-
-                  </div>
-              </div>
-           <h2 style="text-align:center;">Work in progress</h2>
-     </form>
-
+      
 {% endblock %}

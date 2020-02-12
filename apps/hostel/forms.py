@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from crispy_forms.helper import FormHelper
 from apps.hostel.models import  User,Warden,HostelStaff,Student
+from bootstrap_modal_forms.forms import BSModalForm
 
 #admin relatd form
 class WardenSignUpForm(UserCreationForm):
@@ -27,7 +28,7 @@ class WardenSignUpForm(UserCreationForm):
             self.fields[fieldname].help_text = None
 
 
-class WardenSignUpTwo(forms.ModelForm):
+class WardenSignUpTwo(BSModalForm):
     class Meta:
         model = Warden
         fields = ('firstName', 'lastName','email', 'phone_number', 'hostel_name')

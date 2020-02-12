@@ -5,13 +5,42 @@ from apps.hostel.models import User ,Warden
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.db.models import Q
-# Create your views here.
-class AdminHomeView(ListView):
+from django.urls import reverse_lazy
+from django.views import generic
+
+from bootstrap_modal_forms.generic import (BSModalLoginView,
+                                           BSModalCreateView,
+                                           BSModalUpdateView,
+                                           BSModalReadView,
+                                           BSModalDeleteView)
+
+
+class AdminHomeView(generic.ListView):
+    model = Warden
+    context_object_name = 'data'
     template_name = 'admin_view/admin_home.html'
 
-    def get(self,request):
-        data=Warden.objects.all()
-        return render(request,self.template_name,{"data":data,})
+class BookUpdateView(BSModalUpdateView):
+    model = Warden
+    template_name = 'admin_view/update_warden.html'
+    form_class = WardenSignUpTwo
+    success_message = 'Success: Book was updated.'
+    success_url = reverse_lazy('admin-home')
+
+
+class BookReadView(BSModalReadView):
+    model = Warden
+    context_object_name = 'field'
+    template_name = 'admin_view/read_warden.html'
+
+
+class BookDeleteView(BSModalDeleteView):
+    model = User
+    context_object_name = 'field'
+    template_name = 'admin_view/delete_warden.html'
+    success_message = 'Success: Book was deleted.'
+    success_url = reverse_lazy('admin-home')
+
 
 def WardenSignUpView(request):
     if request.method == 'POST':

@@ -87,12 +87,21 @@
           color:#fff;
           border:1px solid #53d769;
         }
-      
+        .btn.btn-primary {
+    background: #f05d23;
+    border: 1px solid #f05d23;
+    color: #fff;
+    position: relative;
+    left: 40%;
+    margin-top: 10%;
+    /* top: 120%; */
+}
+
 {% endblock %}
  {% block nav-link %}
           <li class="colorlib-active" ><a style="font-size:18px;" href="/admin-home"> Home</a></li>
-          <li ><a style="font-size:18px;" href="/signupWarden">Create Warden</a><li>
-          <li ><a style="font-size:18px;" href="/Notice-admin"> Create Notice</a></li>
+          <li ><a style="font-size:18px;" href="/signupWarden">Add Warden</a><li>
+          <li ><a style="font-size:18px;" href="/Notice-admin"> Send Notice</a></li>
           <li><a style="font-size:18px;" href="/search-warden"> Search Warden</a></li>
           <br>
           <hr>
@@ -100,9 +109,9 @@
  {% endblock %}
 
 {% block body %}
-
+   {% include "_modal.html" %}
 <div class="main">
-   <h4>Statistics</h4>
+   <h4 style="margin-top:20px">Dashboard</h4>
    <div class="">
        <h2 style="text-align:center;">No Data</h2>
 
@@ -112,8 +121,8 @@
                                    <h4>All Warden</h4>
   <div class="container">
     <div class="row">
-     {% for field in data %}
-        {% if data %}
+     {% if data %}
+        {% for field in data %}
           <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3 ">
             <div class="box">
               <img src="{% static 'images/logo-2.png' %}" alt="img" class="">
@@ -123,16 +132,53 @@
                       <p class="span2">{{field.hostel_name}}</p>
 
 
-              <a class="a1"><ion-icon     stylew="color:#fc3d39;"  name="trash"> </a>
-              <a class="a2"><ion-icon  stylew="color:#fd9426;" name="create"></a>
-              <a class="a3"><ion-icon  stylew="color:#53d769;" name="eye"> </a>
+              <a class="delete-warden a1" data-id="{% url 'delete_warden' field.pk %}">
+                <ion-icon name="trash">
+              </a>
+              <a class="update-warden a2" data-id="{% url 'update_warden' field.pk %}" >
+                <ion-icon name="create" >
+              </a>
+              <a class="read-warden a3" data-id="{% url 'read_warden' field.pk %}">
+                <ion-icon name="eye">
+              </a>
           </div>
         </div>
-      {% else %}
-              {{msg}}
+        {% endfor %}
+        {% else %}
+
+              <a style="border-radius:10px;" type="submit" class="btn btn-primary" href="/signupWarden">
+                  Add new warden
+              </a>
       {% endif %}
-   {% endfor %}
+
     </div>
   </div>
 </div>
 {% endblock %}
+{% block extrascripts %}
+  <script type="text/javascript">
+    $(function () {
+
+      // Update book buttons
+      $(".update-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // Read book buttons
+      $(".read-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // Delete book buttons
+      $(".delete-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      })
+
+      // Hide message
+      $(".alert").fadeTo(2000, 700).slideUp(700, function(){
+        $(".alert").slideUp(700);
+      });
+
+    });
+  </script>
+{% endblock extrascripts %}
