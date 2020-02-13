@@ -68,13 +68,13 @@
 
  {% block heading %} Add Warden {% endblock %}
  {% block nav-link %}
-    <li><a style="font-size:18px;" href="/admin-home"> Home</a></li>
-    <li  class="colorlib-active"  ><a style="font-size:18px;" href="/signupWarden">Add Warden</a><li>
-    <li ><a style="font-size:18px;" href="/Notice-admin"> Send Notice</a></li>
-    <li><a style="font-size:18px;" href="/search-warden"> Search Warden</a></li>
-        <br>
-        <hr>
-    <li ><a style="color:#fd9426;" id='logout' href="warden/warden-login.html"><i class="fa fa-sign-out"></i> logout</a></li>
+          <li><a style="font-size:18px;" href="{% url 'admin_view:admin-home' %}"> Home</a></li>
+          <li class="colorlib-active" ><a style="font-size:18px;" href="{% url 'warden_view:signupWarden' %}">Add Warden</a><li>
+          <li><a style="font-size:18px;" href="{% url 'admin_view:notice-admin' %}"> Send Notice</a></li>
+          <li><a style="font-size:18px;" href="{% url 'warden_view:search-warden' %}"> Search Warden</a></li>
+          <br>
+          <hr>
+          <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
  {% endblock %}
 
  {% block body%}

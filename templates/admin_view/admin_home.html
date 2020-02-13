@@ -99,10 +99,10 @@
 
 {% endblock %}
  {% block nav-link %}
-          <li class="colorlib-active" ><a style="font-size:18px;" href="/admin-home"> Home</a></li>
-          <li ><a style="font-size:18px;" href="/signupWarden">Add Warden</a><li>
-          <li ><a style="font-size:18px;" href="/Notice-admin"> Send Notice</a></li>
-          <li><a style="font-size:18px;" href="/search-warden"> Search Warden</a></li>
+          <li class="colorlib-active" ><a style="font-size:18px;" href="{% url 'admin_view:admin-home' %}"> Home</a></li>
+          <li ><a style="font-size:18px;" href="{% url 'warden_view:signupWarden' %}">Add Warden</a><li>
+          <li ><a style="font-size:18px;" href="{% url 'admin_view:notice-admin' %}"> Send Notice</a></li>
+          <li><a style="font-size:18px;" href="{% url 'warden_view:search-warden' %}"> Search Warden</a></li>
           <br>
           <hr>
           <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
@@ -131,17 +131,16 @@
 
                       <p class="span2">{{field.hostel_name}}</p>
 
-
-              <a class="delete-warden a1" data-id="{% url 'delete_warden' field.pk %}">
-                <ion-icon name="trash">
-              </a>
-              <a class="update-warden a2" data-id="{% url 'update_warden' field.pk %}" >
-                <ion-icon name="create" >
-              </a>
-              <a class="read-warden a3" data-id="{% url 'read_warden' field.pk %}">
-                <ion-icon name="eye">
-              </a>
-          </div>
+                      <a class="delete-warden a1" data-id="{% url 'warden_view:delete_warden' field.pk %}">
+                        <ion-icon name="trash">
+                      </a>
+                      <a class="update-warden a2" data-id="{% url 'warden_view:update_warden' field.pk %}" >
+                        <ion-icon name="create" >
+                      </a>
+                      <a class="read-warden a3" data-id="{% url 'warden_view:read_warden' field.pk %}">
+                        <ion-icon name="eye">
+                      </a>
+                    </div>
         </div>
         {% endfor %}
         {% else %}

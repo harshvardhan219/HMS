@@ -102,14 +102,14 @@
 
 {% endblock %}
 {% block nav-link %}
-     <li><a style="font-size:18px;" href="/warden-home"> Home</a></li>
-     <li><a style="font-size:18px;" href="/signupStaff">Add Staff</a><li>
-     <li><a style="font-size:18px;" href="/notice-warden">Send Notice</a></li>
-     <li class="colorlib-active"><a style="font-size:18px;" href="/search-staff"> Search Staff</a></li>
-     <li><a style="font-size:18px;" href="/warden-payment">Send Request</a></li>
-     <li><a style="font-size:18px;" href="/warden-payment">Account</a></li>
+     <li><a style="font-size:18px;" href="{% url 'warden_view:warden-home' %}"> Home</a></li>
+     <li ><a style="font-size:18px;" href="{% url 'staff_view:signupStaff' %}">Add Staff</a><li>
+     <li ><a style="font-size:18px;" href="{% url 'warden_view:notice-warden' %}">Send Notice</a></li>
+     <li class="colorlib-active"><a style="font-size:18px;" href="{% url 'staff_view:search-staff' %}">Search Staff</a></li>
+     <li><a style="font-size:18px;" href="{% url 'warden_view:request-warden' %}">Send Request</a></li>
+     <li><a style="font-size:18px;" href="{% url 'warden_view:account-warden' %}" >Account</a></li>
        <br>
-       <hr>
+       <hr-->
     <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
 
 {% endblock %}
@@ -146,13 +146,13 @@
                       <p class="span2">{{field.hostel_name}}</p>
 
 
-                      <a class="delete-warden a1" data-id="{% url 'delete_warden' field.pk %}">
+                      <a class="delete-warden a1" data-id="{% url 'staff_view:delete_staff' field.pk %}">
                         <ion-icon name="trash">
                       </a>
-                      <a class="update-warden a2" data-id="{% url 'update_warden' field.pk %}" >
+                      <a class="update-warden a2" data-id="{% url 'staff_view:update_warden' field.pk %}" >
                         <ion-icon name="create" >
                       </a>
-                      <a class="read-warden a3" data-id="{% url 'read_warden' field.pk %}">
+                      <a class="read-warden a3" data-id="{% url 'staff_view:read_warden' field.pk %}">
                         <ion-icon name="eye">
                       </a>
                     </div>

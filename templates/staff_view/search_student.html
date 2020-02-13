@@ -121,16 +121,17 @@ border: 1px solid rgb(255,128,33);
 }
 
 {% endblock %}
- {% block nav-link %}
- <li ><a style="font-size:18px;" href="/staff-home"> Home</a></li>
- <li  class="colorlib-active" ><a style="font-size:18px;" href="/signupStudent">Create Student</a><li>
-   <li ><a style="font-size:18px;" href="/notice-staff"> Create Notice</a></li>
-   <li><a style="font-size:18px;" href="/search-student"> Search Student</a></li>
-   <li><a style="font-size:18px;" href="/staff-payment"> fee / payment</a></li>
-   <br>
-   <hr>
-   <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>      logout</a></li>
- {% endblock %}
+{% block nav-link %}
+         <li  ><a style="font-size:18px;" href="{% url 'staff_view:staff-home' %}"> Home</a></li>
+         <li  ><a style="font-size:18px;" href="{% url 'student_view:signupStudent' %}">Add Student</a><li>
+         <li ><a style="font-size:18px;" href="{% url 'staff_view:notice-staff' %}"> Send Notice</a></li>
+         <li class="colorlib-active"><a style="font-size:18px;" href="{% url 'student_view:search-student' %}"> Search Student</a></li>
+         <li><a style="font-size:18px;" href="{% url 'staff_view:staff-request' %}"> Send Request</a></li>
+         <li><a style="font-size:18px;" href="{% url 'staff_view:staff-account' %}"> Account</a></li>
+         <br>
+         <hr>
+         <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
+{% endblock %}
 
 {% block body %}
 

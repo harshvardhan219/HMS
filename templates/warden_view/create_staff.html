@@ -68,14 +68,14 @@
 
  {% block heading %} Add Staff {% endblock %}
  {% block nav-link %}
-      <li><a style="font-size:18px;" href="/warden-home"> Home</a></li>
-      <li   class="colorlib-active"><a style="font-size:18px;" href="/signupStaff">Add Staff</a><li>
-      <li><a style="font-size:18px;" href="/notice-warden">Send Notice</a></li>
-      <li><a style="font-size:18px;" href="/search-staff"> Search Staff</a></li>
-      <li><a style="font-size:18px;" href="/warden-payment">Send Request</a></li>
-      <li><a style="font-size:18px;" href="/warden-payment">Account</a></li>
+      <li><a style="font-size:18px;" href="{% url 'warden_view:warden-home' %}"> Home</a></li>
+      <li class="colorlib-active"><a style="font-size:18px;" href="{% url 'staff_view:signupStaff' %}">Add Staff</a><li>
+      <li ><a style="font-size:18px;" href="{% url 'warden_view:notice-warden' %}">Send Notice</a></li>
+      <li><a style="font-size:18px;" href="{% url 'staff_view:search-staff' %}">Search Staff</a></li>
+      <li><a style="font-size:18px;" href="{% url 'warden_view:request-warden' %}">Send Request</a></li>
+      <li><a style="font-size:18px;" href="{% url 'warden_view:account-warden' %}" >Account</a></li>
         <br>
-        <hr>
+        <hr-->
      <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
 
  {% endblock %}
