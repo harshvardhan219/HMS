@@ -20,25 +20,25 @@ class AdminHomeView(generic.ListView):
     context_object_name = 'data'
     template_name = 'admin_view/admin_home.html'
 
-class BookUpdateView(BSModalUpdateView):
+class WardenUpdateView(BSModalUpdateView):
     model = Warden
     template_name = 'admin_view/update_warden.html'
     form_class = WardenSignUpTwo
-    success_message = 'Success: Book was updated.'
+    success_message = 'Success: Warden was updated.'
     success_url = reverse_lazy('admin-home')
 
 
-class BookReadView(BSModalReadView):
+class WardenReadView(BSModalReadView):
     model = Warden
     context_object_name = 'field'
     template_name = 'admin_view/read_warden.html'
 
 
-class BookDeleteView(BSModalDeleteView):
+class WardenDeleteView(BSModalDeleteView):
     model = User
     context_object_name = 'field'
     template_name = 'admin_view/delete_warden.html'
-    success_message = 'Success: Book was deleted.'
+    success_message = 'Success: Warden was deleted.'
     success_url = reverse_lazy('admin-home')
 
 

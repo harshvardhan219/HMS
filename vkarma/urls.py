@@ -17,7 +17,7 @@ from django.urls import path
 from django.conf.urls import url
 from django.contrib.auth import views as auth_view
 #admin_view
-from apps.hostel.views.admin_view import AdminHomeView, WardenSignUpView,WardenSearchView,AdminCreateNotice,WardenLoginView, BookUpdateView,BookReadView,BookDeleteView
+from apps.hostel.views.admin_view import AdminHomeView, WardenSignUpView,WardenSearchView,AdminCreateNotice,WardenLoginView, WardenUpdateView,WardenReadView,WardenDeleteView
 # warden_view
 from apps.hostel.views.warden_view import WardenHomeView,StaffSignUpView,WardenCreateNotice,StaffSearchView,WardenPayView
 #staff_view
@@ -43,8 +43,8 @@ urlpatterns = [
     url('search-student/',StudentSearchView,name='search-staff'),
     url('staff-payment/',StaffPayView,name='payment-staff'),
 
-    path('update/<int:pk>', BookUpdateView.as_view(), name='update_warden'),
-    path('read/<int:pk>', BookReadView.as_view(), name='read_warden'),
-    path('delete/<int:pk>',BookDeleteView.as_view(), name='delete_warden'),
+    path('update/<int:pk>', WardenUpdateView.as_view(), name='update_warden'),
+    path('read/<int:pk>', WardenReadView.as_view(), name='read_warden'),
+    path('delete/<int:pk>',WardenDeleteView.as_view(), name='delete_warden'),
 
 ]
