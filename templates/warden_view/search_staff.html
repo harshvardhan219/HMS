@@ -103,10 +103,11 @@
 {% endblock %}
 {% block nav-link %}
      <li><a style="font-size:18px;" href="/warden-home"> Home</a></li>
-     <li><a style="font-size:18px;" href="/signupStaff">Create Staff</a><li>
-     <li><a style="font-size:18px;" href="/notice-warden"> Create notice</a></li>
+     <li><a style="font-size:18px;" href="/signupStaff">Add Staff</a><li>
+     <li><a style="font-size:18px;" href="/notice-warden">Send Notice</a></li>
      <li class="colorlib-active"><a style="font-size:18px;" href="/search-staff"> Search Staff</a></li>
-     <li><a style="font-size:18px;" href="/warden-payment"> fee / payment </a></li>
+     <li><a style="font-size:18px;" href="/warden-payment">Send Request</a></li>
+     <li><a style="font-size:18px;" href="/warden-payment">Account</a></li>
        <br>
        <hr>
     <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
@@ -129,38 +130,39 @@
   <div class="main">
     <br>
     <div class="row">
-               {% if data %}
-          <h4>Search Result</h4> <br>
-            {% for field in data %}
-               {% if data %}
-                  <div class="col-md-3 ">
-                        <div class="box">
-                          <img src="{% static 'images/person_3.jpg' %}" alt="img" class="">
-                           <br>
-                          <span style="padding-right:20px;" class="span2" draggable="true">
-                            {{field.firstName}} {{field.lastName}}
-                          </span>
-                            <br>
-                           <span class="span2" draggable="true">
-                              {{field.hostel_name}}
-                           </span>
-                             <br>
-                           <span class="span2">
-                             <ion-icon style="color:#fc3d39;"  name="trash">
-                           </span>
-                           <span class="span2">
-                             <ion-icon  style="color:#fd9426;" name="create">
-                           </span>
-                          <span class="span2")>
-                            <ion-icon  style="color:#53d769 ;" name="eye">
-                          </span>
-                      </div>
-                  </div>
-                  {% else %}
-                              <h4>No Result found </h4>
-               {% endif %}
-           {% endfor %}
-        {% endif %}
+      {% if data %}
+      <h4>Search Result</h4>
+       <br>
+
+      {% for field in data %}
+
+
+          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3 ">
+            <div class="box">
+              <img src="{% static 'images/logo-2.png' %}" alt="img" class="">
+
+                   <p class="span2">{{field.firstName}} {{field.lastName}}</p>
+
+                      <p class="span2">{{field.hostel_name}}</p>
+
+
+                      <a class="delete-warden a1" data-id="{% url 'delete_warden' field.pk %}">
+                        <ion-icon name="trash">
+                      </a>
+                      <a class="update-warden a2" data-id="{% url 'update_warden' field.pk %}" >
+                        <ion-icon name="create" >
+                      </a>
+                      <a class="read-warden a3" data-id="{% url 'read_warden' field.pk %}">
+                        <ion-icon name="eye">
+                      </a>
+                    </div>
+        </div>
+{% endfor %}
+
+
+      {% endif %}
+
+
     </div>
   </div>
 {% endblock %}

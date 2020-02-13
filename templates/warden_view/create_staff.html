@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
- {% block title %} Create Staff {%endblock%}
+ {% block title %} Add Staff  {%endblock%}
 {% block style %}
   ion-icon {
       color:#fd9426;
@@ -66,13 +66,14 @@
   }
 {% endblock%}
 
- {% block heading %} add Staff {% endblock %}
+ {% block heading %} Add Staff {% endblock %}
  {% block nav-link %}
       <li><a style="font-size:18px;" href="/warden-home"> Home</a></li>
-      <li class="colorlib-active"><a style="font-size:18px;" href="/signupStaff">Create Staff</a><li>
-      <li><a style="font-size:18px;" href="/notice-warden"> Create Notice</a></li>
+      <li   class="colorlib-active"><a style="font-size:18px;" href="/signupStaff">Add Staff</a><li>
+      <li><a style="font-size:18px;" href="/notice-warden">Send Notice</a></li>
       <li><a style="font-size:18px;" href="/search-staff"> Search Staff</a></li>
-      <li><a style="font-size:18px;" href="/warden-payment"> fee / payment </a></li>
+      <li><a style="font-size:18px;" href="/warden-payment">Send Request</a></li>
+      <li><a style="font-size:18px;" href="/warden-payment">Account</a></li>
         <br>
         <hr>
      <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
