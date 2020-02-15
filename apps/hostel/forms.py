@@ -2,8 +2,14 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from crispy_forms.helper import FormHelper
-from apps.hostel.models import  User,Warden,HostelStaff,Student
+from apps.hostel.models import  User,Warden,HostelStaff,Student,Noticee
 from bootstrap_modal_forms.forms import BSModalForm
+import datetime
+import time
+import random
+from django.db.models.fields import TimeField
+from bootstrap_datepicker_plus import DateTimePickerInput
+
 
 #admin relatd form
 class WardenSignUpForm(UserCreationForm):
@@ -172,3 +178,26 @@ class StudentSignUpTwo(forms.ModelForm):
 class StudentSearchForm(forms.Form):
      search = forms.CharField(label='',
                     widget=forms.TextInput(attrs={'placeholder': '  Enter Student name  or hostel name'}))
+
+class NoticeForm(forms.ModelForm):
+    class Meta:
+        model = Noticee
+        fields = ('Subject','description','users','file',)
+
+    def save(self,user):
+        owner = user
+        issue_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        Subject = self.cleaned_data['Subject']
+        description = self.cleaned_data['description']
+        users = self.cleaned_data['users']
+        file = self.cleaned_data['file']
+
+        Noticee.objects.create(Subject=Subject, description=description, users=users, file=file, owner=owner, issue_date=issue_date)
+
+    def __init__(self, users, *args, **kwargs):
+        super(NoticeForm, self).__init__(*args, **kwargs)
+        self.fields['users'].queryset = User.objects.filter(is_admin=False)
+        self.fields['Subject'].widget.attrs['placeholder'] = ' Subject'
+        self.fields['description'].widget.attrs['placeholder'] = ' Enter your msg......'
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False

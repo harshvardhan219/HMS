@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from apps.hostel.forms import WardenSignUpForm,WardenSignUpTwo, WardenSearchForm
+from apps.hostel.forms import WardenSignUpForm,WardenSignUpTwo, WardenSearchForm,NoticeForm
 from apps.hostel.models import User ,Warden,HostelStaff
 from django.contrib.auth import login
 from django.shortcuts import redirect
@@ -39,6 +39,8 @@ def WardenSignUpView(request):
     })
 
 
+
+
 class WardenUpdateView(BSModalUpdateView):
     model = Warden
     template_name = 'admin_view/update_warden.html'
@@ -46,19 +48,17 @@ class WardenUpdateView(BSModalUpdateView):
     success_message = 'Success: Warden was updated.'
     success_url = reverse_lazy('admin_view:admin-home')
 
-
-class WardenReadView(BSModalReadView):
-    model = Warden
-    context_object_name = 'field'
-    template_name = 'admin_view/read_warden.html'
-
-
 class WardenDeleteView(BSModalDeleteView):
     model = User
     context_object_name = 'field'
     template_name = 'admin_view/delete_warden.html'
     success_message = 'Success: Warden was deleted.'
     success_url = reverse_lazy('admin_view:admin-home')
+
+class WardenReadView(BSModalReadView):
+    model = Warden
+    context_object_name = 'field'
+    template_name = 'admin_view/read_warden.html'
 
 
 
@@ -73,10 +73,6 @@ def WardenSearchView(request):
         res=render(request,'admin_view/search_warden.html',{'form':form})
         return res
 
-def WardenCreateNotice(request):
-    res=render(request,'warden_view/create_notice.html')
-    return res
-
 def WardenRequest(request):
     res=render(request,'warden_view/create_notice.html')
     return res
@@ -84,3 +80,16 @@ def WardenRequest(request):
 def WardenAccount(request):
     res=render(request,'warden_view/create_notice.html')
     return res
+
+def WardenCreateNotice(request):
+    form = NoticeForm(request.user, request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            print('Saved notice')
+            form.save(request.user)
+            form = NoticeForm(request.user)
+    context = {
+        'form': form,
+        'user': request.user,
+    }
+    return render(request, 'warden_view/create_notice.html',context)

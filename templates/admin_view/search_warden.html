@@ -114,6 +114,14 @@ ion-icon {
         }
 
 {% endblock %}
+{% block profile%}
+<a Class="" href="#"><ion-icon name="contact"></ion-icon></a>
+<a Class="" href="#"><ion-icon name="notifications"></ion-icon></a>
+<a Class="" href="#"><ion-icon name="mail"></ion-icon></a>
+<h2 style="" class="h4 font-weight-bold d">
+
+{% endblock %}
+
 {% block nav-link %}
          <li><a style="font-size:18px;" href="{% url 'admin_view:admin-home' %}"> Home</a></li>
          <li ><a style="font-size:18px;" href="{% url 'warden_view:signupWarden' %}">Add Warden</a><li>

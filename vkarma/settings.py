@@ -47,7 +47,7 @@ THIRD_PARTY_APPS=[
     'crispy_forms',
     'bootstrap_modal_forms',
     'widget_tweaks',
-
+    'rest_framework',
 
 ]
 

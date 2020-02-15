@@ -110,7 +110,6 @@
       <li><a style="font-size:18px;" href="{% url 'warden_view:notice-warden' %}">Send Notice</a></li>
       <li><a style="font-size:18px;" href="{% url 'staff_view:search-staff' %}">Search Staff</a></li>
       <li><a style="font-size:18px;" href="{% url 'warden_view:request-warden' %}">Send Request</a></li>
-      <li><a style="font-size:18px;" href="{% url 'warden_view:account-warden' %}" >Account</a></li>
         <br>
         <hr-->
      <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
@@ -157,7 +156,7 @@
        {% endfor %}
        {% else %}
 
-             <a style="border-radius:10px;" type="submit" class="btn btn-primary" href="/signupWarden">
+             <a style="border-radius:10px;" type="submit" class="btn btn-primary" href="{% url 'staff_view:signupStaff' %}">
                  Add new Staff Member
              </a>
      {% endif %}
@@ -165,3 +164,30 @@
   </div>
 </div>
 {% endblock %}
+{% block extrascripts %}
+  <script type="text/javascript">
+    $(function () {
+
+      // Update book buttons
+      $(".update-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // Read book buttons
+      $(".read-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // Delete book buttons
+      $(".delete-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      })
+
+      // Hide message
+      $(".alert").fadeTo(2000, 700).slideUp(700, function(){
+        $(".alert").slideUp(700);
+      });
+
+    });
+  </script>
+{% endblock extrascripts %}

@@ -7,6 +7,15 @@ from django.shortcuts import redirect
 from django.db.models import Q
 
 # Create your views here.
+class StudentHomeView(ListView):
+    template_name = 'student_view/student_home.html'
+
+    def get(self,request):
+        return render(request,self.template_name)
+
+
+
+
 def StudentSignUpView(request):
     if request.method == 'POST':
         main_form = StudentSignUpForm(request.POST)

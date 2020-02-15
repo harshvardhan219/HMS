@@ -81,7 +81,56 @@ ion-icon {
     -webkit-box-shadow: none !important;
     box-shadow:none;
   }
+  input,select, optgroup {
+      margin: 10px;
+      width: 100%;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      outline: none;
+      border: 2px solid #ced4da;
+      color:rgb(255,128,33);
+      border-radius: 10px;
+      height: 52px !important;
+      font-size: 18px;
+      background: #fff !important;
+      color: #000000 !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+      transition:0.4s;
+  }
+  input:hover,select:hover, optgroup:hover
+  , textarea:hover {
+       transition:0.4s;
+       border: 1px solid rgb(255,128,33);
+  }
+  textarea {
+    margin: 10px;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+    border: 2px solid #ced4da;
+    color:rgb(255,128,33);
+    border-radius: 10px;
+    height: 152px !important;
+    font-size: 18px;
+    background: #fff !important;
+    color: #000000 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    transition:0.4s;
+  }
 {% endblock %}
+{% block profile%}
+<a Class="" href="#"><ion-icon name="contact"></ion-icon></a>
+<a Class="" href="#"><ion-icon name="notifications"></ion-icon></a>
+<a Class="" href="#"><ion-icon name="mail"></ion-icon></a>
+<h2 style="" class="h4 font-weight-bold d">
+
+{% endblock %}
+
 {% block nav-link %}
          <li><a style="font-size:18px;" href="{% url 'admin_view:admin-home' %}"> Home</a></li>
          <li ><a style="font-size:18px;" href="{% url 'warden_view:signupWarden' %}">Add Warden</a><li>
@@ -92,5 +141,26 @@ ion-icon {
          <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
 {% endblock %}
     {% block body %}
+    <form method="post" novalidate enctype="multipart/form-data">
+{% csrf_token %}
 
+<div  class="form-row">
+  <div class="form-group col-md-6 mb-0">
+             {{ form.Subject|as_crispy_field }}
+  </div>
+  <div class="form-group col-md-6 mb-0">
+             {{ form.users|as_crispy_field }}
+  </div>
+
+</div>
+<div  class="form-row">
+    <div class=" des form-group col-md-12 mb-0">
+               {{ form.description|as_crispy_field }}
+    </div>
+
+</div>
+
+<button type="submit" style="border-radius:10px" class="btn btn-primary">Submit</button>
+
+</form>
 {% endblock %}

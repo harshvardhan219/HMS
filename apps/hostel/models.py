@@ -68,6 +68,20 @@ class Parent(models.Model):
     def __str__(self):
         return self.user.firstName + ' ' + self.user.lastName
 
+class Noticee(models.Model):
+    users = models.ForeignKey(User, on_delete=models.CASCADE,related_name='sender')
+    issue_date = models.DateField(blank=True, null=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,related_name='reciever')
+    Subject = models.CharField(max_length=250)
+    description = models.TextField(max_length=500)
+    file = models.FileField(upload_to='notice_files', blank=True)
+
+    def __str__(self):
+           return self.name
+
+
+
+
 class Notification(models.Model):
     pass
 

@@ -90,22 +90,31 @@ position: relative;
   letter-spacing:1px;
 }
 
+.btn.btn-primary {
+background: #f05d23;
+border: 1px solid #f05d23;
+color: #fff;
+position: relative;
+left: 40%;
+margin-top: 10%;
+/* top: 120%; */
 }
+
 {% endblock %}
  {% block nav-link %}
           <li class="colorlib-active" ><a style="font-size:18px;" href="{% url 'staff_view:staff-home' %}"> Home</a></li>
           <li ><a style="font-size:18px;" href="{% url 'student_view:signupStudent' %}">Add Student</a><li>
           <li ><a style="font-size:18px;" href="{% url 'staff_view:notice-staff' %}"> Send Notice</a></li>
-          <li><a style="font-size:18px;" href="{% url 'student_view:search-student' %}"> Search Student</a></li>
           <li><a style="font-size:18px;" href="{% url 'staff_view:staff-request' %}"> Send Request</a></li>
-          <li><a style="font-size:18px;" href="{% url 'staff_view:staff-account' %}"> Account</a></li>
+
+          <li><a style="font-size:18px;" href="{% url 'student_view:search-student' %}"> Search Student</a></li>
           <br>
           <hr>
           <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
  {% endblock %}
 
 {% block body %}
-
+{% include "_modal.html" %}
 <div class="main">
    <h4>Statistics</h4>
    <div class="">
@@ -116,27 +125,61 @@ position: relative;
 <div class="main">
      <h4>All Student</h4>
   <div class="row">
-     {% for field in data %}
-         {% if data %}
-          <div class="col-md-3 ">
-              <div class="box">
-                    <img src="{% static 'images/person_3.jpg' %}" alt="img" class="">
-                    <br>
-                    <span style="padding-right:20px;" class="span2" draggable="true"> {{field.firstName}} {{field.lastName}}</span>
-                    <br>
-                    <span class="span2" draggable="true"> {{field.hostel_name}}</span>
-                    <br>
-                     <!--a style="" href="#">Detail</a-->
-                    <span class="span2"><ion-icon style="color:#fc3d39;"  name="trash"> </span>
-                   <span class="span2"><ion-icon  style="color:#fd9426;" name="create"></span>
-                   <span class="span2" onClick="editUser({{field.id}})" data-toggle="modal" data-target="#myModal")" ><ion-icon  style="color:#53d769 ;" name="eye"> </span>
+    {% if data %}
+       {% for field in data %}
+         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3 ">
+           <div class="box">
+             <img src="{% static 'images/logo-2.png' %}" alt="img" class="">
 
+                  <p class="span2">{{field.firstName}} {{field.lastName}}</p>
 
-               </div>
-          </div>
+                     <p class="span2">{{field.hostel_name}}</p>
 
-          {% endif %}
-     {% endfor %}
+                     <a class="delete-warden a1" data-id="{% url 'warden_view:delete_warden' field.pk %}">
+                       <ion-icon name="trash">
+                     </a>
+                     <a class="update-warden a2" data-id="{% url 'warden_view:update_warden' field.pk %}" >
+                       <ion-icon name="create" >
+                     </a>
+                     <a class="read-warden a3" data-id="{% url 'warden_view:read_warden' field.pk %}">
+                       <ion-icon name="eye">
+                     </a>
+                   </div>
+       </div>
+       {% endfor %}
+       {% else %}
+
+             <a style="border-radius:10px;" type="submit" class="btn btn-primary" href="{% url 'student_view:signupStudent' %}">
+                 Add new Student
+             </a>
+     {% endif %}
   </div>
 </div>
 {% endblock %}
+{% block extrascripts %}
+  <script type="text/javascript">
+    $(function () {
+
+      // Update book buttons
+      $(".update-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // Read book buttons
+      $(".read-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // Delete book buttons
+      $(".delete-warden").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      })
+
+      // Hide message
+      $(".alert").fadeTo(2000, 700).slideUp(700, function(){
+        $(".alert").slideUp(700);
+      });
+
+    });
+  </script>
+{% endblock extrascripts %}

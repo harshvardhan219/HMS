@@ -6,7 +6,7 @@ urlpatterns = [
     path('admin/', include(([
         path('admin-home',admin_view.AdminHomeView.as_view(),name='admin-home'),
         path('notice-admin/',admin_view.AdminCreateNotice,name='notice-admin'),
-
+        path('read/<int:pk>', admin_view.AdminProfileView.as_view(), name='read_admin'),
     ], 'dashboard'),namespace='admin_view')),
 
     path('warden/', include(([
@@ -25,7 +25,7 @@ urlpatterns = [
     path('staff/', include(([
         path('signupStaff/',staff_view.StaffSignUpView,name='signupStaff'),
         path('search-staff/',staff_view.StaffSearchView,name='search-staff'),
-        path('staff-home/',staff_view.StaffHomeView.as_view(),name='warden-home'),
+        path('staff-home/',staff_view.StaffHomeView.as_view(),name='staff-home'),
         path('notice-staff/',staff_view.StaffCreateNotice,name='notice-staff'),
         path('staff-request/',staff_view.StaffCreateNotice,name='staff-request'),
         path('staff-account/',warden_view.WardenCreateNotice,name='staff-account'),
@@ -37,9 +37,15 @@ urlpatterns = [
     ], 'dashboard'),namespace='staff_view')),
 
     path('student/', include(([
+        path('student-home/',student_view.StudentHomeView.as_view(),name='student-home'),
         path('signupStudent/',student_view.StudentSignUpView,name='signupStudent'),
         path('search-student/',student_view.StudentSearchView,name='search-student'),
     ], 'dashboard'),namespace='student_view')),
+
+    path('parent/', include(([
+        path('parent-home/',parent_view.ParentHomeView.as_view(),name='parent-home'),
+        ], 'dashboard'),namespace='parent_view')),
+
 
 
 ]

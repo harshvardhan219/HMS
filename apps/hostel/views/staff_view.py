@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from apps.hostel.forms import StaffSignUpForm , StaffSignUpTwo,StaffSearchForm
+from apps.hostel.forms import StaffSignUpForm , StaffSignUpTwo,StaffSearchForm,NoticeForm
 from apps.hostel.models import User ,HostelStaff,Student
 from django.contrib.auth import login
 from django.shortcuts import redirect
@@ -78,6 +78,16 @@ def StaffSearchView(request):
         res=render(request,'warden_view/search_staff.html',{'form':form})
         return res
 
+
 def StaffCreateNotice(request):
-    res=render(request,'staff_view/create_notice.html')
-    return res
+    form = NoticeForm(request.user, request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            print('Saved notice')
+            form.save(request.user)
+            form = NoticeForm(request.user)
+    context = {
+        'form': form,
+        'user': request.user,
+    }
+    return render(request, 'staff_view/create_notice.html',context)
