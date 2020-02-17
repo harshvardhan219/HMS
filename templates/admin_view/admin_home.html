@@ -100,7 +100,7 @@
 {% endblock %}
  {% block nav-link %}
           <li class="colorlib-active" ><a style="font-size:18px;" href="{% url 'admin_view:admin-home' %}"> Home</a></li>
-          <li ><a style="font-size:18px;" data-id="{% url 'warden_view:signupWarden' %}">Add Warden</a><li>
+          <li ><a style="font-size:18px;" href="{% url 'warden_view:signupWarden' %}">Add Warden</a><li>
           <li ><a style="font-size:18px;" href="{% url 'admin_view:notice-admin' %}"> Send Notice</a></li>
           <li><a style="font-size:18px;" href="{% url 'warden_view:search-warden' %}"> Search Warden</a></li>
           <br>

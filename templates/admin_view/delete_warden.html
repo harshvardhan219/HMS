@@ -3,21 +3,22 @@
 <form method="post" action="">
   {% csrf_token %}
 
-  <div class="modal-header">
-    <h3 class="modal-title">Delete Warden</h3>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <div style="background:rgb(255,128,33);" class="modal-header">
+    <h3 style="color:#fff"; class="modal-title">Delete Warden</h3>
+    <!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
-    </button>
+    </button-->
   </div>
 
   <div class="modal-body">
-    <p class="delete-text">Are you sure you want to delete Warden with name :
+    <p style="font-size:15px;" class="delete-text">Are you sure you want to delete Warden with username :
       <br>
-      <strong>{{field.username}} {{field.lastName}}</strong>?</p>
+      <strong style="font-size:18px; color:rgb(255,128,33)">{{field.username}} {{field.lastName}}</strong>?</p>
   </div>
 
   <div class="modal-footer">
-    <button type="submit" class="delete-btn btn btn-danger">Delete</button>
+    <a style="border-radius:10px;color:rgb(255,128,33); background:none; border:none;" href="{% url 'admin_view:admin-home' %}">Cancel</a>
+    <button style="border-radius:10px; background:rgb(255,128,33); border:none;"; type="submit" class="delete-btn btn btn-danger">Delete</button>
   </div>
 
 </form>
