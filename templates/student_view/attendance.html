@@ -128,50 +128,6 @@
 
 
 {% endblock %}
-{% block nav-link %}
-          <li class="colorlib-active" ><a style="font-size:18px;" href="{% url 'admin_view:admin-home' %}"> Home</a></li>
-          <hr>
-          <li ><a style="font-size:18px;" href="{% url 'student_view:student-attendance' %}">My Attendance</a><li>
-          <hr>
-          <li ><a style="font-size:18px;" href="{% url 'admin_view:notice-admin' %}"> Send Request</a></li>
-          <hr>
-          <li><a style="font-size:18px;" href="{% url 'warden_view:search-warden' %}"> Complaint</a></li>
-          
-          <hr>
-          <li ><a style="color:#fd9426;" id='logout' href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> logout</a></li>
- {% endblock %}
-
-{% block body %}
-   {% include "_modal.html" %}
-   <div class="main">
-      <h4 style="margin-top:">Dashboard</h4>
-        <div class="container-fluid  ">
-          <div class="row">
-               <div id='allwarden' style="height:100px;cursor:pointer;" class="box1 col-md-3">
-                 <p >Total Warden</p>
-                 <p style="font-size:40px;" >16</p>
-                 </div>
-                 <div  style="height:100px; cursor:pointer;" class="box1 col-md-3">
-                   <p>Recent Added </p>
-                   <p style="font-size:20px;margin-top:1rem;" >Harsh Vardhan</p>
-                   </div>
-                   <div style="height:100px;cursor:pointer;" class="box1 col-md-3">
-                     <p >Recent Deleted</p>
-                     <p style="font-size:20px; margin-top:1rem;" >Deepak Bhamla</p>
-                     </div>
-
-          </div>
-     </div>
-   </div>
-<div class="main">
-                                   <h4>My Feed</h4>
-  <div class="container">
-    <div class="row">
-
-    </div>
-  </div>
-</div>
-{% endblock %}
 {% block profile%}
 <a Class="" href="#"><ion-icon name="contact"></ion-icon></a>
 <a Class="" href="#"><ion-icon name="notifications"></ion-icon></a>
@@ -179,3 +135,16 @@
 <h2 style="" class="h4 font-weight-bold d">
 
 {% endblock %}
+
+{% block nav-link %}
+          <li  ><a style="font-size:18px;" href="{% url 'student_view:student-home' %}"> Home</a></li>
+          <hr>
+          <li class="colorlib-active"><a style="font-size:18px;" href="{% url 'student_view:student-attendance' %}">My Attendance</a><li>
+          <hr>
+          <li ><a style="font-size:18px;" href="{% url 'admin_view:notice-admin' %}"> Send Request</a></li>
+          <hr>
+          <li><a style="font-size:18px;" href="{% url 'warden_view:search-warden' %}"> Complaint</a></li>
+        
+          <hr>
+          <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
+ {% endblock %}

@@ -91,3 +91,7 @@ def StaffCreateNotice(request):
         'user': request.user,
     }
     return render(request, 'staff_view/create_notice.html',context)
+
+def StaffCreateRequest(request):
+    form = NoticeForm(request.user, request.POST or None)
+    return render(request, 'staff_view/request.html',{'form':form})

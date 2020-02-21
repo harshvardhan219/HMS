@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Warden | Home {%endblock%}
-{% block heading %} Welcome  {% endblock %}
+{% block heading %} <h3>Welcome</h3>  {% endblock %}
+
 {% block style %}
       ion-icon {
           color:#fd9426;
-          font-size:30px;
+          font-size:33px;
           float:right;
           margin:0 3px;
           padding:3px;
           line-height:20px;
           display:block;
-          border: 1px solid #fd9426;
+          border: 0px solid #fd9426;
           border-radius:10px;
           cursor:pointer;
-          transition:0.1s;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
         }
         ion-icon:hover{
           transition:0.1s;
           background:#fd9426;
           color:#FFF;
           border: 1px solid #fd9426;
+          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         }
         .menu {
           top: -71px;
@@ -30,16 +34,34 @@
         {
           margin-bottom:20px ;
           border-radius:10px ;
-          box-shadow:0 0 0 0.4;
           opacity:0.8;
           width: 100%;
           height: 330px;
-          border: 2px solid #ced4da;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
         }
         .box:hover{
-
-          border: 1px solid rgb(255,128,33);
           background:.rgb(255,128,33);
+          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+        }
+        .modal-box {
+          background:red;
+        }
+
+        .box1
+        {
+          margin:30px ;
+          border-radius:10px ;
+          opacity:0.8;
+          width: 100%;
+          height: 330px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        .box1:hover{
+          background:.rgb(255,128,33);
+          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 
         }
 
@@ -51,14 +73,18 @@
           color: #999999;
           font-weight:bolder;
           text-align: center;
-          padding-left: 15px;
+          margin-bottom:0px;
 
         }
+        #span3{
+          color:black;
+        }
         .main h4 {
-          color:#000;
-          background: #ced4da;
+          color:rgb(255,128,33);
+          background: #ffffff;
           border-radius:10px;
           padding:0px 10px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
         .box img {
           width:100%;
@@ -67,16 +93,6 @@
           border-radius:50%;
 
         }
-        .box a {
-          background:rgb(255,128,33);
-          color:#ffffff;
-          font-size:20px;
-          padding:5px 20px;
-          border-radius:20px;
-          margin-left:20px;
-          letter-spacing:1px;
-        }
-
         .box .a1 ion-icon {
           color:#fc3d39
 
@@ -102,38 +118,86 @@
     left: 40%;
     margin-top: 10%;
     /* top: 120%; */
-  }
+}
+.box1 p {
+  text-align:center;
+  font-size:18px;
+  color:#999999;
+   margin-bottom:-1rem;
+
+}
+
+
 {% endblock %}
  {% block nav-link %}
       <li  class="colorlib-active"><a style="font-size:18px;" href="{% url 'warden_view:warden-home' %}"> Home</a></li>
-      <li><a style="font-size:18px;" href="{% url 'staff_view:signupStaff' %}">Add Staff</a><li>
+      <hr>
+      <li><a style="font-size:18px;" href="{% url 'staff_signup' %}">Add Staff</a><li>
+       <hr>
+       <li><a style="font-size:18px;" href="{% url 'warden_view:request-warden' %}">Send Request</a></li>
+
+      <hr>
       <li><a style="font-size:18px;" href="{% url 'warden_view:notice-warden' %}">Send Notice</a></li>
-      <li><a style="font-size:18px;" href="{% url 'warden_view:request-warden' %}">Send Request</a></li>
-    
+
+     <hr>
       <li><a style="font-size:18px;" href="{% url 'staff_view:search-staff' %}">Search Staff</a></li>
+      <hr>
+      <li><a style="font-size:18px;" href="{% url 'staff_view:search-staff' %}"> Attendance</a></li>
+        <hr>
         <br>
-        <hr-->
-     <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
+     <li ><a style="color:#fd9426;" id='logout' href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>   logout</a></li>
+
+ {% endblock %}
+
+ {% block profile%}
+ <a Class="read-admin" data-id="{ url  'admin_view:READ-admin field.pk}"><ion-icon name="contact"></ion-icon></a>
+
+ <a Class="" href="#"><ion-icon name="notifications"></ion-icon></a>
+ <a Class="" href="#"><ion-icon name="mail"></ion-icon></a>
+ <h2 style="" class="h4 font-weight-bold d">
 
  {% endblock %}
 
 {% block body %}
   {% include "_modal.html" %}
 
-<div class="main">
-   <h4>Statistics</h4>
-   <div class="">
-       <h2 style="text-align:center;">No Data</h2>
+  <div class="main">
+     <h4 style="margin-top:-5px">Dashboard</h4>
+       <div class="container-fluid  ">
+         <div class="row">
+              <div id='allwarden' style="height:100px;cursor:pointer;" class="box1 col-md-3">
+                <p >Total Staff</p>
+                <p style="font-size:40px;" >{{ data.count }}</p>
+                </div>
+                <div  style="height:100px; cursor:pointer;" class="box1 col-md-3">
+                  <p>Recent Added </p>
+                  {% if data %}
+                  <p style="font-size:20px;margin-top:1rem;" >{{ data.last.firstName }} {{ data.last.lastName }}</p>
+                  {% else %}
+                  <p style="font-size:20px;margin-top:1rem;" > - - - </p>
+                         {% endif %}
+                  </div>
 
-   </div>
-</div>
+                  <div style="height:100px;cursor:pointer;" class="box1 col-md-3">
+                    <p >Recent Deleted</p>
+                    {% if data %}
+                    <p style="font-size:20px; margin-top:1rem;" > - - - </p>
+                    {% else %}
+                    <p style="font-size:20px;margin-top:1rem;" > - - - </p>
+                           {% endif %}
+
+                    </div>
+
+         </div>
+    </div>
+  </div>
 <div class="main">
                                    <h4>All Staff Member</h4>
   <div class="row">
     {% if data %}
        {% for field in data %}
          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3 ">
-           <div class="box">
+           <div style="margin-top:5px;" class="box">
              <img src="{% static 'images/logo-2.png' %}" alt="img" class="">
 
                   <p class="span2">{{field.firstName}} {{field.lastName}}</p>
@@ -143,10 +207,10 @@
                      <a class="delete-warden a1" data-id="{% url 'staff_view:delete_staff' field.pk %}">
                        <ion-icon name="trash">
                      </a>
-                     <a class="update-warden a2" data-id="{% url 'staff_view:update_warden' field.pk %}" >
+                     <a class="update_warden a2" data-id="{% url 'staff_view:update_staff' field.pk %}" >
                        <ion-icon name="create" >
                      </a>
-                     <a class="read-warden a3" data-id="{% url 'staff_view:read_warden' field.pk %}">
+                     <a class="read-warden a3" data-id="{% url 'staff_view:read_staff' field.pk %}">
                        <ion-icon name="eye">
                      </a>
 
@@ -157,9 +221,9 @@
        {% endfor %}
        {% else %}
 
-             <a style="border-radius:10px;" type="submit" class="btn btn-primary" href="{% url 'staff_view:signupStaff' %}">
+             <button style="border-radius:10px;" type="button" class="ripple" href="{% url 'staff_signup' %}">
                  Add new Staff Member
-             </a>
+             </button>
      {% endif %}
 
   </div>

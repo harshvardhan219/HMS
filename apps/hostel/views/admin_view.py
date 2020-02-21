@@ -37,6 +37,4 @@ def AdminCreateNotice(request):
     return render(request, 'admin_view/create_notice.html',context)
 
 class AdminProfileView(BSModalReadView):
-       model = Admin
-       context_object_name = 'field'
-       template_name = 'admin_view/read_warden.html'
+    template_name = 'admin_view/admin_profile.html'

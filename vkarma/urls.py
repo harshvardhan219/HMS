@@ -7,7 +7,7 @@ from django.contrib.auth import urls
 from django.contrib import admin
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include('apps.hostel.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/admin/', admin_view.AdminSignUpView, name='admin_signup'),

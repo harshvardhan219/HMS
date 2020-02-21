@@ -7,6 +7,13 @@ from django.shortcuts import redirect
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from ..decorators import student_required, admin_required,hostelstaff_required,warden_required
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import user_passes_test
 
 from bootstrap_modal_forms.generic import (BSModalLoginView,
                                            BSModalCreateView,
@@ -14,6 +21,7 @@ from bootstrap_modal_forms.generic import (BSModalLoginView,
                                            BSModalReadView,
                                            BSModalDeleteView)
 
+@method_decorator([login_required], name='dispatch')
 class WardenHomeView(ListView):
     template_name = 'warden_view/warden_home.html'
 
@@ -21,7 +29,8 @@ class WardenHomeView(ListView):
         data=HostelStaff.objects.all()
         return render(request,self.template_name,{"data":data})
 
-
+@login_required
+@warden_required
 def WardenSignUpView(request):
     if request.method == 'POST':
         main_form = WardenSignUpForm(request.POST)
@@ -73,8 +82,9 @@ def WardenSearchView(request):
         res=render(request,'admin_view/search_warden.html',{'form':form})
         return res
 
-def WardenRequest(request):
-    res=render(request,'warden_view/create_notice.html')
+def WardenCreateRequest(request):
+    form = NoticeForm(request.user, request.POST or None)
+    res=render(request,'warden_view/request.html',{'form':form})
     return res
 
 def WardenAccount(request):

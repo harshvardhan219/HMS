@@ -1,1 +1,4 @@
 env
+models.py
+migrations
+__pycache__

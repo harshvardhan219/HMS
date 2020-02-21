@@ -1,88 +1,157 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
  {% block title %} Create Student {%endblock%}
-  {% block style %}
-  ion-icon {
-    color:#fd9426;
-    font-size:30px;
-    float:right;
-    margin:0 3px;
-    padding:3px;
-    line-height:20px;
-    display:block;
-    border: 1px solid #ced4da;
-    border-radius:10px;
-    cursor:pointer;
-  }
-  ion-icon:hover{
-    border: 1px solid #fd9426;
-  }
+ {% block style %}
+ .card {
+   margin-bottom:20px ;
+   border-radius:10px ;
+   opacity:0.8;
+   padding:100px
+   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
-  .menu {
-top: -71px;
-position: relative;
-  }
-  .main {
-    background:;
-    border:1px solid #fff;
-    padding:10px;
-    border-radius:20px;
-  }
-  .h2 {
-    line-height: 1.8;
-    color: rgba(0, 0, 0, 0.8);
-    font-weight: 400;
-    margin-left: 10px;
-    font-family: "Poppins", Arial, sans-serif;
-  }
-  .colorlib-active {
-    color:red;
-  }
-  input,select, optgroup, textarea {
-      margin: 10px;
-      width: 100%;
-      font-family: inherit;
-      font-size: inherit;
-      line-height: inherit;
-      outline: none;
-      border: 2px solid #ced4da;
-      color:rgb(255,128,33);
-      border-radius: 10px;
-      height: 52px !important;
-      font-size: 18px;
-      background: #fff !important;
-      color: #000000 !important;
-      -webkit-box-shadow: none !important;
-      box-shadow: none !important;
+ }
+ .card:hover{
+   background:.rgb(255,128,33);
+   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 
-  }
+ }
+ ion-icon {
+     color:#fd9426;
+     font-size:33px;
+     float:right;
+     margin:0 3px;
+     padding:3px;
+     line-height:20px;
+     display:block;
+     border: 0px solid #fd9426;
+     border-radius:10px;
+     cursor:pointer;
+     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
-input:hover,select:hover, optgroup:hover
-, textarea:hover {
+   }
+   ion-icon:hover{
+     transition:0.1s;
+     background:#fd9426;
+     color:#FFF;
+     border: 1px solid #fd9426;
+     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+   }
+   .menu {
+       top: -71px;
+       position: relative;
+    }
+   .main {
+     background:;
+     border:1px solid #fff;
+     padding:10px;
+     border-radius:20px;
+   }
+   .h2 {
+     line-height: 1.8;
+     color: rgba(0, 0, 0, 0.8);
+     font-weight: 400;
+     margin-left: 10px;
+     font-family: "Poppins", Arial, sans-serif;
+   }
 
-  border: 1px solid rgb(255,128,33);
+   input,select, optgroup, textarea {
+       margin: 10px;
+       width: 100%;
+       font-family: inherit;
+       font-size: inherit;
+       line-height: inherit;
+       outline: none;
+       border: 1px solid #999999 ;
+       color:rgb(255,128,33);
+       border-radius: 10px;
+       height: 52px !important;
+       font-size: 18px;
+       background: #fff !important;
+       color: #000000 !important;
 
-}
-label {
-    display: inline-block;
-    /* margin-bottom: 00; */
-}
-  {% endblock%}
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
- {% block heading %} add Student {% endblock %}
+   }
+   input:hover,select:hover, optgroup:hover
+   , textarea:hover {
+        transition:0.4s;
+        border: 1px solid rgb(255,128,33);
+   }
+   label {
+      display: inline-block;
+     /* margin-bottom: 00; */
+   }
+   .main h4 {
+     color:rgb(255,128,33);
+     background: #ffffff;
+     border-radius:10px;
+     padding:0px 10px;
+     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+   }
+   button {
+     outline:none;
+     border:none;
+     font-size:20px;
+     padding:2px 10px;
+     background:rgb(255,128,33);
+     color:#ffffff;
+
+     cursor:pointer;
+     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+   }
+             .ripple {
+               background-position: center;
+               transition: background 0.8s;
+             }
+             .ripple:hover {
+               background: #fc6e05 radial-gradient(circle, transparent 1%, #db8646  1%) center/15000%;
+             }
+             .ripple:active {
+               background-color: rgb(255,128,33);
+               background-size: 100%;
+               transition: background 0s;
+             }
+
+             /* Button style */
+
+
+ {% endblock%}
+
+ {% block heading %} <h3>Add Student</h3> {% endblock %}
  {% block nav-link %}
           <li  ><a style="font-size:18px;" href="{% url 'staff_view:staff-home' %}"> Home</a></li>
-          <li class="colorlib-active" ><a style="font-size:18px;" href="{% url 'student_view:signupStudent' %}">Add Student</a><li>
-          <li ><a style="font-size:18px;" href="{% url 'staff_view:notice-staff' %}"> Send Notice</a></li>
-          <li><a style="font-size:18px;" href="{% url 'staff_view:staff-request' %}"> Send Request</a></li>
-          <li><a style="font-size:18px;" href="{% url 'student_view:search-student' %}"> Search Student</a></li>
-          <br>
           <hr>
-          <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
+          <li class="colorlib-active" ><a style="font-size:18px;" href="{% url 'student_signup' %}">Add Student</a><li>
+          <hr>
+          <li><a style="font-size:18px;" href="{% url 'staff_view:staff-request' %}"> Send Request</a></li>
+          
+          <hr>
+          <li ><a style="font-size:18px;" href="{% url 'staff_view:notice-staff' %}"> Send Notice</a></li>
+
+          <hr>
+          <li><a style="font-size:18px;" href="{% url 'student_view:search-student' %}"> Search Student</a></li>
+
+          <hr>
+          <li ><a style="color:#fd9426;" id='logout' href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> logout</a></li>
+ {% endblock %}
+ {% block profile%}
+ <a Class="admin-profile" data-id="{ url  'admin_view:admin_profile }"><ion-icon name="contact"></ion-icon></a>
+
+ <a Class="" href="#"><ion-icon name="notifications"></ion-icon></a>
+ <a Class="" href="#"><ion-icon name="mail"></ion-icon></a>
+ <h2 style="" class="h4 font-weight-bold d">
+
  {% endblock %}
 
  {% block body%}
 
+ <div class="main">
+   <h4 style="margin-top:px;margin-bottom:30px">Fill Information</h4>
 
  <form  method="post">
   {% csrf_token %}
@@ -134,6 +203,7 @@ label {
 
 
 
-  <button type="submit" class="btn btn-primary">create</button>
+  <button type="submit" style="border-radius:10px;" class="ripple">create</button>
 </form>
+</div>
   {% endblock %}

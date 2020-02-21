@@ -20,7 +20,7 @@ class Warden(models.Model):
     email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=12 ,null=True)
     hostel_name=models.CharField(max_length=20,null=True)
-    #admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
+    admin = models.ForeignKey(Admin, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.email
@@ -33,10 +33,10 @@ class HostelStaff(models.Model):
     email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=12 ,null=True)
     hostel_name=models.CharField(max_length=100)
-    warden = models.ForeignKey(Warden, on_delete=models.CASCADE)
+    warden = models.ForeignKey(Warden, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.user.firstName + ' ' + self.user.lastName
+        return self.email
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -48,7 +48,7 @@ class Student(models.Model):
     parent_name=models.CharField(max_length=100,null=True)
     class_name=models.CharField(max_length=100,null=True)
     roll_number=models.CharField(max_length=10 ,null=True)
-    staff = models.ForeignKey(HostelStaff, on_delete=models.CASCADE)
+    staff = models.ForeignKey(HostelStaff, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.user.firstName + ' ' + self.user.lastName

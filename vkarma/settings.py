@@ -151,3 +151,11 @@ except ImportError :
 
 #Authentication of AbstractUser
 AUTH_USER_MODEL='hostel.User'
+
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout'
+
+LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'home'

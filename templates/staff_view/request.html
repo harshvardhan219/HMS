@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}Admin | Notice {%endblock%}
-{% block heading %} <h3>Notice</h3>  {% endblock %}
+{% block heading %}<h3>Send Request</h3> {% endblock %}
 {% block menu %}profile {% endblock %}
 {% block style %}
 .card {
@@ -137,13 +137,6 @@ ion-icon {
         transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
   }
-  .main h4 {
-    color:rgb(255,128,33);
-    background: #ffffff;
-    border-radius:10px;
-    padding:0px 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  }
   button {
     outline:none;
     border:none;
@@ -172,61 +165,97 @@ ion-icon {
 
             /* Button style */
 
+            .main h4 {
+              color:rgb(255,128,33);
+              background: #ffffff;
+              border-radius:10px;
+              padding:0px 10px;
+              box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            }
+            button {
+              outline:none;
+              border:none;
+              font-size:20px;
+              padding:2px 10px;
+              background:rgb(255,128,33);
+              color:#ffffff;
+
+              cursor:pointer;
+              box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+              transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+            }
+                      .ripple {
+                        background-position: center;
+                        transition: background 0.8s;
+                      }
+                      .ripple:hover {
+                        background: #fc6e05 radial-gradient(circle, transparent 1%, #db8646  1%) center/15000%;
+                      }
+                      .ripple:active {
+                        background-color: rgb(255,128,33);
+                        background-size: 100%;
+                        transition: background 0s;
+                      }
+
+                      /* Button style */
+
+
+
 
 {% endblock %}
 {% block nav-link %}
-     <li><a style="font-size:18px;" href="{% url 'warden_view:warden-home' %}"> Home</a></li>
-     <hr>
-     <li><a style="font-size:18px;" href="{% url 'staff_signup' %}">Add Staff</a><li>
-       <hr>
-     <li class="colorlib-active"><a style="font-size:18px;" href="{% url 'warden_view:notice-warden' %}">Send Notice</a></li>
-     <hr>
-      <li><a style="font-size:18px;" href="{% url 'warden_view:request-warden' %}">Send Request</a></li>
-      <hr>
-     <li><a style="font-size:18px;" href="{% url 'staff_view:search-staff' %}">Search Staff</a></li>
+         <li  ><a style="font-size:18px;" href="{% url 'staff_view:staff-home' %}"> Home</a></li>
+         <hr>
+         <li><a style="font-size:18px;" href="{% url 'student_signup' %}">Add Student</a><li>
+         <hr>
+         <li  class="colorlib-active" ><a style="font-size:18px;" href="{% url 'staff_view:staff-request' %}"> Send Request</a></li>
+         <hr>
+         <li ><a style="font-size:18px;" href="{% url 'staff_view:notice-staff' %}"> Send Notice</a></li>
+         <hr>
+         <li><a style="font-size:18px;" href="{% url 'student_view:search-student' %}"> Search Student</a></li>
+        
+         <hr>
+         <li ><a style="color:#fd9426;" id='logout' href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> logout</a></li>
+{% endblock %}
+    {% block body %}
+    <div class="row">
+      <div class="container">
+        <div class="main">
+          <h4 style="margin-top:20px;margin-bottom:30px">Fill Information</h4>
+
+        <div class="card">
 
 
-       <hr>
-       <br>
-    <li ><a style="color:#fd9426;" id='logout' href="/logout"><i class="fa fa-sign-out"></i>   logout</a></li>
+    <form method="post" novalidate enctype="multipart/form-data">
+{% csrf_token %}
 
+<div  class="form-row">
+  <div class="form-group col-md-11 mb-0">
+             {{ form.Subject|as_crispy_field }}
+  </div>
+
+</div>
+<div  class="form-row">
+    <div class=" des form-group col-md-11 mb-0">
+               {{ form.description|as_crispy_field }}
+    </div>
+
+</div>
+
+<button type="submit" style="border-radius:10px;margin:10px;" class="ripple">Submit</button>
+
+</form>
+</div>
+</div>
+</div>
+</div>
 {% endblock %}
 {% block profile%}
-<a Class="read-admin" data-id="{ url  'admin_view:READ-admin field.pk}"><ion-icon name="contact"></ion-icon></a>
+<a Class="admin-profile" data-id="{ url  'admin_view:admin_profile }"><ion-icon name="contact"></ion-icon></a>
 
 <a Class="" href="#"><ion-icon name="notifications"></ion-icon></a>
 <a Class="" href="#"><ion-icon name="mail"></ion-icon></a>
 <h2 style="" class="h4 font-weight-bold d">
-
-{% endblock %}
-
-    {% block body %}
-    <div class="main">
-      <h4 style="margin-top:20px;margin-bottom:30px">Fill Information</h4>
-    <div class="card">
-
-    <form  method="post">
-         {% csrf_token %}
-       <div  class="form-row">
-         <div class="form-group col-md-6 mb-0">
-          {{ form.Subject | as_crispy_field}}
-          </div>
-          <div class="form-group col-md-5 mb-0">
-           {{ form.users | as_crispy_field}}
-           </div>
-
-          </div>
-          <div  class="form-row">
-            <div class="form-group col-md-11 mb-0">
-             {{ form.description | as_crispy_field}}
-             </div>
-             </div>
-
-       <button type="submit"  style="border-radius:10px;margin:20px;" class="ripple">
-         create
-       </button>
-   </form>
-   </div>
-   </div>
 
 {% endblock %}
